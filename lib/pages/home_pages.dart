@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:belanja_flutter/pages/item_page.dart';
 import 'package:flutter_belanja/models/item.dart';
-import 'package:flutter_belanja/pages/item-pages.dart';
 
 class HomePage extends StatelessWidget {
+  HomePage({Key? key}) : super(key: key);
   final List<Item> items = [
     Item(name: 'Sugar', price: 5000),
-    Item(name: 'Salt', price: 2000),
-    Item(name: 'pepper', price: 7000),
-    Item(name: 'Onion', price: 10000),
-    Item(name: 'Potato', price: 13000),
+    Item(name: 'Salt', price: 2000)
   ];
-
-  HomePage({Key? key}) : super(key: key);
-  // throw UnimplementedError();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Belanja App'),
+        title: const Text('Shopping List'),
       ),
       body: Container(
         margin: const EdgeInsets.all(8),
@@ -30,17 +23,14 @@ class HomePage extends StatelessWidget {
             final item = items[index];
             return InkWell(
               onTap: () {
-                Navigator.pushNamed(context, ItemPage.routeName,
-                    arguments: item);
+                Navigator.pushNamed(context, '/item', arguments: item);
               },
               child: Card(
                 child: Container(
                   margin: const EdgeInsets.all(8),
                   child: Row(
                     children: [
-                      Expanded(
-                        child: Text(item.name),
-                      ),
+                      Expanded(child: Text(item.name)),
                       Expanded(
                         child: Text(
                           item.price.toString(),

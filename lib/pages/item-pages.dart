@@ -1,22 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:belanja_flutter/models/item.dart';
 import 'package:flutter_belanja/models/item.dart';
 
 class ItemPage extends StatelessWidget {
   const ItemPage({Key? key}) : super(key: key);
 
-  static const routeName = '/extractArguments';
-
   @override
   Widget build(BuildContext context) {
     final Item itemArgs = ModalRoute.of(context)!.settings.arguments as Item;
-
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Belanja App'),
+        title: const Text('Shopping List'),
       ),
-      body: Center(
-        child: Text(itemArgs.name + 'with' + itemArgs.price.toString()),
+      body: Container(
+        margin: const EdgeInsets.all(8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: Text(
+                itemArgs.name,
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+            Center(
+              child: Text(
+                itemArgs.price.toString(),
+                style: Theme.of(context).textTheme.headline6,
+              ),
+            ),
+            ElevatedButton(
+              child: const Text('Back'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
